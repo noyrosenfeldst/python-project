@@ -6,9 +6,7 @@ def GetWordsFromFile(file_path):
     try:
         with open(file_path, "r") as file:
             file_content = file.read()
-
             words = file_content.split()
-
             for word in words:
                 unique_words.add(word)
 

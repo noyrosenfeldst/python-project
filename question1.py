@@ -24,7 +24,6 @@ def create_treasure_file():
                 amount = random.randint(MIN_REPEAT, MAX_REPEAT)
                 file.write(str(digit) * amount)
 
-            # Treasure word
             file.write(TREASURE)
 
             # Digits from 9 to 0
@@ -88,7 +87,6 @@ def move_position(position, direction, amount, text_length):
 def play_game():
     """Run the treasure hunt game."""
     text = read_treasure_file()
-
     if text == "":
         return 0
 
@@ -96,18 +94,14 @@ def play_game():
     moves = 0
 
     while text[position] not in TREASURE:
-
         print(f'You are on "{text[position]}"')
-
         direction = input(
             "Where do you want to move? [1- forward 2- backwards]\n"
         )
-
         # Validate direction immediately
         if direction != FORWARD and direction != BACKWARD:
             print("Invalid direction.")
             continue
-
         amount = get_amount()
 
         position = move_position(
@@ -123,7 +117,6 @@ def play_game():
 
     print("\nYou found the TREASURE!")
     print(f"It took you {moves} moves.")
-
     return moves
 
 
@@ -133,14 +126,11 @@ def read_leaderboard():
 
     try:
         with open(LEADERBOARD_FILE, "r") as file:
-
             for line in file:
                 parts = line.strip().split(" ", 1)
-
                 if len(parts) == 2:
                     score = int(parts[0])
                     name = parts[1]
-
                     scores.append((score, name))
 
     except FileNotFoundError:
@@ -156,7 +146,6 @@ def save_leaderboard(scores):
     """Save leaderboard scores to file."""
     try:
         with open(LEADERBOARD_FILE, "w") as file:
-
             for score, name in scores:
                 file.write(f"{score} {name}\n")
 
@@ -169,17 +158,11 @@ def update_leaderboard(score):
     scores = read_leaderboard()
 
     if len(scores) < MAX_SCORES or score < scores[-1][0]:
-
         name = input("You entered the leaderboard! Enter your name:\n")
-
         scores.append((score, name))
-
         scores.sort()
-
         scores = scores[:MAX_SCORES]
-
         save_leaderboard(scores)
-
         print("Leaderboard updated.")
 
     else:

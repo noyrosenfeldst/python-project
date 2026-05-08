@@ -10,7 +10,6 @@ def GetSumSize(file_list):
         try:
             with open(file_path, "r"):
                 file_size = os.path.getsize(file_path)
-
                 total_size += file_size
 
         except FileNotFoundError:
